@@ -1,12 +1,14 @@
 import os
-from typing import List
 from pathlib import Path
+from typing import List
 
 
 def get_main_databricks_path(search_path: Path) -> Path:
     pattern = "databricks.y*ml"
     files_found = list(search_path.glob(pattern))
-    assert len(files_found) == 1, f"There should be only one '{pattern}' file at '{search_path}', files_found={[file.name for file in files_found]}."
+    assert (
+        len(files_found) == 1
+    ), f"There should be one '{pattern}' file at '{search_path}', files_found={[file.name for file in files_found]}."
     return files_found[0]
 
 

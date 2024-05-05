@@ -1,12 +1,13 @@
 """
 Module containing the CLI app of the library
 """
+
 import os
-from typing import List
+from pathlib import Path
 
 import click
-from pathlib import Path
-from databricks_bundle_validator import inject
+
+from databricks_bundle_validator import inject  # type: ignore[attr-defined]
 
 
 @click.group()
@@ -17,7 +18,7 @@ def cli():
 @cli.command(name="inject")
 @click.option("--search-path", default=os.getcwd(), type=click.Path(exists=True, file_okay=False, resolve_path=True))
 @click.option("--dry-run", is_flag=True, default=False)
-def inject(search_path:Path, dry_run: bool):
+def _inject(search_path: Path, dry_run: bool):
     """
     Add required values into the Databricks asset bundle files.
 
