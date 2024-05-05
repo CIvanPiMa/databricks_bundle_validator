@@ -1,12 +1,12 @@
 """
 Module containing the CLI app of the library
 """
-
+import os
 from typing import List
 
 import click
-
-from databricks_bundle_validator.dog import Dog
+from pathlib import Path
+from databricks_bundle_validator import inject
 
 
 @click.group()
@@ -14,22 +14,21 @@ def cli():
     pass
 
 
-@cli.command(name="hello")
-@click.option("--count", default=1, help="Number of greetings.")
-@click.option("--name", prompt="Your name", help="The person to greet.")
-def hello(count, name):
-    """Greets NAME for a total of COUNT times."""
-    for x in range(count):
-        click.echo(f"Hello {name}!")
+@cli.command(name="inject")
+@click.option("--search-path", default=os.getcwd(), type=click.Path(exists=True, file_okay=False, resolve_path=True))
+@click.option("--dry-run", is_flag=True, default=False)
+def inject(search_path:Path, dry_run: bool):
+    """
+    Add required values into the Databricks asset bundle files.
 
-
-@cli.command(name="bark")
-@click.option("--loud", is_flag=True, show_default=True, default=False, help="let the dog bark!")
-@click.option("-f", "--friend", multiple=True, default=[], help="let the dog bark!")
-def bark(loud: bool, friend: List[str]):
-    """Let the dogs out!"""
-    coco = Dog(name="Coco", friends=friend)
-    click.echo(coco.bark(loud=loud))
+    attributes
+    ----------
+    search_path: Path
+        OPTIONAL: Path to search the main Databricks Asset Bundle file. If none given use the current working directory.
+    dry_run: bool
+        OPTIONAL: Only generate a report of changes to be done.
+    """
+    inject.main(search_path=search_path, dry_run=dry_run)
 
 
 if __name__ == "__main__":

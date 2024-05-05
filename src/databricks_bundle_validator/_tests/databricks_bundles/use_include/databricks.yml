@@ -1,0 +1,54 @@
+bundle: # Required.
+  name: string # Required.
+  databricks_cli_version: string
+  compute_id: string
+  git:
+    origin_url: string
+    branch: string
+
+# This is the identity to use to run the bundle
+run_as:
+  - user_name: <user-name>
+  - service_principal_name: <service-principal-name>
+
+# These are for any custom variables for use throughout the bundle.
+variables:
+  some-unique-variable-name:
+    description: string
+    default: string
+
+# These are any additional configuration files to include.
+include:
+  - "include.yml"
+  - "wildcard/include_*.yml"
+
+# These are any additional files or paths to include or exclude.
+sync:
+  include:
+    - "<some-file-or-path-glob-to-include>"
+    - "<another-file-or-path-glob-to-include>"
+  exclude:
+    - "<some-file-or-path-glob-to-exclude>"
+    - "<another-file-or-path-glob-to-exclude>"
+
+# These are the targets to use for deployments and workflow runs. One and only one of these
+# targets can be set to "default: true".
+targets:
+  some-unique-programmatic-identifier-for-this-target:
+    artifacts:
+      # See the preceding "artifacts" syntax.
+    bundle:
+      # See the preceding "bundle" syntax.
+    compute_id: string
+    default: true | false
+    mode: development
+    resources:
+      # See the preceding "resources" syntax.
+    sync:
+      # See the preceding "sync" syntax.
+    variables:
+      preceding-unique-variable-name: <non-default-value>
+    workspace:
+      # See the preceding "workspace" syntax.
+    run_as:
+      # See the preceding "run_as" syntax.

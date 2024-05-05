@@ -30,6 +30,8 @@ classifiers = [
 
 #Library dependencies --*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
 dependencies = [
+    "pydantic",
+    "pydantic-yaml",
 ]
 
 [project.optional-dependencies]
