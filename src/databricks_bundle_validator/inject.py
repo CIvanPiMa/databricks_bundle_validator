@@ -4,8 +4,8 @@ from typing import Dict, List
 from pydantic import ValidationError
 from pydantic_yaml import parse_yaml_file_as, to_yaml_file
 
-from databricks_bundle_validator.crawler import get_extra_databricks_files, get_main_databricks_path
-from databricks_bundle_validator.mappings import DatabricksFile, MainDatabricksFile
+from .crawler import get_extra_databricks_files, get_main_databricks_path
+from .mappings import DatabricksFile, MainDatabricksFile
 
 
 def main(search_path: Path | str, dry_run: bool = False):

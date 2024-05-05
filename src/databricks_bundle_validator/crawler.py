@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from typing import List
+from typing import List, Sequence
 
 
 def get_main_databricks_path(search_path: Path) -> Path:
@@ -12,7 +12,7 @@ def get_main_databricks_path(search_path: Path) -> Path:
     return files_found[0]
 
 
-def get_extra_databricks_files(main_databricks_path: Path, includes: List[str]) -> List[Path]:
+def get_extra_databricks_files(main_databricks_path: Path, includes: Sequence[str]) -> List[Path]:
 
     extra_databricks_files = []
     for pattern in includes:

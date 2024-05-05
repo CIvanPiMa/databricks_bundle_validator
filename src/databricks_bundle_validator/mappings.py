@@ -24,7 +24,7 @@ class _Permission(_BaseModel):
 
 class DatabricksFile(_BaseModel):
     permissions: Optional[List[_Permission]] = Field(default_factory=list)
-    include: Optional[List[str]] = Field(default_factory=list)
+    include: List[str] = Field(default_factory=list)
 
     @field_validator("permissions")
     @classmethod
@@ -33,7 +33,7 @@ class DatabricksFile(_BaseModel):
 
 
 class MainDatabricksFile(DatabricksFile):
-    @model_validator(mode="after")
+    @model_validator(mode="after")  # type: ignore[misc]
     def fill_authomatic_permissions(self) -> "DatabricksFile":
         self.permissions = [_Permission.model_construct(level="CAN_MANAGE", user_name="me@me.com")]
         return self
