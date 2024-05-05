@@ -1,0 +1,38 @@
+# These are the default workspace settings if not otherwise overridden in
+# the following "targets" top-level mapping.
+workspace:
+  artifact_path: string
+  auth_type: string
+  #  azure_client_id: string # For Azure Databricks only.
+  #  azure_environment: string # For Azure Databricks only.
+  #  azure_login_app_id: string # For Azure Databricks only. Non-operational and reserved for future use.
+  #  azure_tenant_id: string # For Azure Databricks only.
+  #  azure_use_msi: true | false # For Azure Databricks only.
+  #  azure_workspace_resource_id: string # For Azure Databricks only.
+  client_id: string # For Databricks on AWS only.
+  file_path: string
+  #  google_service_account: string # For Databricks on Google Cloud only.
+  host: string
+  profile: string
+  root_path: string
+  state_path: string
+
+# These are the permissions to apply to experiments, jobs, models, and pipelines defined
+# in the "resources" mapping.
+permissions:
+  - level: <permission-level>
+    user_name: <unique-user-name>
+  - level: <permission-level>
+    group_name: <unique-group-name>
+  - level: <permission-level>
+    service_principal_name: <unique-principal-name>
+
+# These are the default artifact settings if not otherwise overridden in
+# the following "targets" top-level mapping.
+artifacts:
+  some-unique-artifact-identifier:
+    build: string
+    files:
+      - source: string
+    path: string
+    type: string

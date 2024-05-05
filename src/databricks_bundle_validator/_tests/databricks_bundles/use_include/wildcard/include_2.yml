@@ -1,0 +1,15 @@
+# These are the default job and pipeline settings if not otherwise overridden in
+# the following "targets" top-level mapping.
+resources:
+  experiments:
+    <some-unique-programmatic-identifier-for-this-experiment>:
+      # See the Experiments API's create experiment request payload reference.
+  jobs:
+    <some-unique-programmatic-identifier-for-this-job>:
+      # See the Jobs API's create job request payload reference.
+  models:
+    <some-unique-programmatic-identifier-for-this-model>:
+      # See the Models API's create model request payload reference.
+  pipelines:
+    <some-unique-programmatic-identifier-for-this-pipeline>:
+      # See the Delta Live Tables API's create pipeline request payload reference.

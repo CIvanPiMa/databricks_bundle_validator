@@ -1,0 +1,128 @@
+#https://packaging.python.org/en/latest/tutorials/packaging-projects/ ----*----*----*----*----*----*----*----*----*----*
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+#https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html ----*----*----*----*----*----*----*----*----*----*
+[project]
+name = "databricks_bundle_validator"
+dynamic = ["version"]
+description = "test project to read yaml files validate/update and overwrite them"
+readme = { file = "README.txt", content-type = "text/markdown" }
+authors = [
+    { name = "Ivan Pina", email = "cs.ip.mt@gmail.com" }
+]
+maintainers = [
+    { name = "Ivan Pina", email = "cs.ip.mt@gmail.com" }
+]
+keywords = [
+]
+classifiers = [
+    # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License 2.0",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Utilities",
+]
+
+#Library dependencies --*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+dependencies = [
+    "pydantic",
+    "pydantic-yaml",
+]
+
+[project.optional-dependencies]
+cli = [
+    "click",
+    "rich",
+]
+docs = [
+    "pdoc",
+]
+lint = [
+    "black",
+    "bump-my-version",
+    "isort",
+    "mypy",
+]
+test = [
+    "coverage",
+    "pytest",
+    "tox",
+]
+dev = [
+    "databricks_bundle_validator[cli]",
+    "databricks_bundle_validator[docs]",
+    "databricks_bundle_validator[lint]",
+    "databricks_bundle_validator[test]",
+]
+
+#Entry Points *----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+[project.scripts]
+databricks_bundle_validator_cli = "databricks_bundle_validator.cli:cli"
+
+#URLs ---*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+[project.urls]
+Homepage = "https://github.com/CIvanPiMa/databricks_bundle_validator.git"
+Documentation = "https://github.com/CIvanPiMa/databricks_bundle_validator/main/README.md"
+Repository = "https://github.com/CIvanPiMa/databricks_bundle_validator.git"
+Issues = "https://github.com/CIvanPiMa/databricks_bundle_validator/issues"
+Changelog = "https://github.com/CIvanPiMa/databricks_bundle_validator/blob/main/CHANGELOG.md"
+
+#https://setuptools.pypa.io/en/latest/userguide/datafiles.html -*----*----*----*----*----*----*----*----*----*----*----*
+[tool.setuptools.package-data]
+databricks_bundle_validator = ["*.yml"]
+
+#Documentation ----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+#https://pdoc.dev/docs/pdoc.html#how-can-i
+#https://github.com/mitmproxy/pdoc/tree/main/examples
+#$ pdoc -o docs/ src/databricks_bundle_validator
+
+#https://callowayproject.github.io/bump-my-version/reference/configuration/ ---*----*----*----*----*----*----*----*----*
+[tool.bumpversion]
+current_version = "0.0.0"
+parse = "(?x)(?P<major>0|[1-9]\\d*)\\.(?P<minor>0|[1-9]\\d*)\\.(?P<patch>0|[1-9]\\d*)(?:-(?P<pre_l>[a-zA-Z-]+)(?P<pre_n>0|[1-9]\\d*))?"
+serialize = [
+    "{major}.{minor}.{patch}-{pre_l}{distance_to_latest_tag}",
+    "{major}.{minor}.{patch}",
+]
+commit = true
+message = "Bump version: {current_version} → {new_version}"
+tag = true
+tag_name = "v{new_version}"
+tag_message = "Bump version: {current_version} → {new_version}"
+
+[tool.bumpversion.parts.pre_l]
+values = ["dev", "rc", "final"]
+optional_value = "final"
+
+[[tool.bumpversion.files]]
+filename = "src/databricks_bundle_validator/__init__.py"
+search = "{current_version}"
+replace = "{new_version}"
+
+#https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html ----*----*----*----*----*----*----*----*
+[tool.black]
+line-length = 120
+
+#https://pycqa.github.io/isort/docs/configuration/options.html -*----*----*----*----*----*----*----*----*----*----*----*
+[tool.isort]
+line_length = 120
+profile = "black"
+
+#https://mypy.readthedocs.io/en/stable/config_file.html ---*----*----*----*----*----*----*----*----*----*----*----*----*
+[tool.mypy]
+warn_return_any = true
+warn_unreachable = true
+
+#https://docs.pytest.org/en/stable/reference/customize.html ----*----*----*----*----*----*----*----*----*----*----*----*
+#[tool.pytest.ini_options]
+
+#https://coverage.readthedocs.io/en/latest/config.html ----*----*----*----*----*----*----*----*----*----*----*----*----*
+#[tool.coverage.run]
+
+#https://tox.wiki/en/latest/config.html ----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+#[tool.tox]
