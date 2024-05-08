@@ -123,8 +123,9 @@ exclude = [
 warn_return_any = true
 warn_unreachable = true
 
-#https://docs.pytest.org/en/stable/reference/customize.html ----*----*----*----*----*----*----*----*----*----*----*----*
-#[tool.pytest.ini_options]
+#https://docs.pytest.org/en/stable/reference/reference.html#ini-options-ref ---*----*----*----*----*----*----*----*----*
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 #https://tox.wiki/en/latest/config.html ----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
 #[tool.tox]

@@ -1,5 +1,13 @@
+import os
 import subprocess
+
+cwd = os.getcwd()
+test_assets = os.path.join(cwd, "assets/databricks_bundles")
 
 
 def test_main():
-    assert subprocess.check_output(["databricks_bundle_validator_cli", "hello", "--name", "Ivan Pina"], text=True) == "Hello Ivan Pina!\n"
+    result = subprocess.check_output(
+        ["databricks_bundle_validator_cli", "inject", "--search-path", f"{test_assets}/single_file", "--dry-run"],
+        text=True,
+    )
+    assert result == ""
