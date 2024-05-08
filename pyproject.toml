@@ -43,14 +43,13 @@ docs = [
     "pdoc",
 ]
 lint = [
-    "black",
     "bump-my-version",
-    "isort",
     "mypy",
+    "ruff",
 ]
 test = [
-    "coverage",
     "pytest",
+    "pytest-cov",
     "tox",
 ]
 dev = [
@@ -104,14 +103,17 @@ filename = "src/databricks_bundle_validator/__init__.py"
 search = "{current_version}"
 replace = "{new_version}"
 
-#https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html ----*----*----*----*----*----*----*----*
-[tool.black]
+#https://docs.astral.sh/ruff/settings/ *----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+[tool.ruff]
+fix = true
 line-length = 120
+src = ["src", "tests"]
 
-#https://pycqa.github.io/isort/docs/configuration/options.html -*----*----*----*----*----*----*----*----*----*----*----*
-[tool.isort]
-line_length = 120
-profile = "black"
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 120
+
+[tool.ruff.lint]
 
 #https://mypy.readthedocs.io/en/stable/config_file.html ---*----*----*----*----*----*----*----*----*----*----*----*----*
 [tool.mypy]
@@ -123,9 +125,6 @@ warn_unreachable = true
 
 #https://docs.pytest.org/en/stable/reference/customize.html ----*----*----*----*----*----*----*----*----*----*----*----*
 #[tool.pytest.ini_options]
-
-#https://coverage.readthedocs.io/en/latest/config.html ----*----*----*----*----*----*----*----*----*----*----*----*----*
-#[tool.coverage.run]
 
 #https://tox.wiki/en/latest/config.html ----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
 #[tool.tox]
