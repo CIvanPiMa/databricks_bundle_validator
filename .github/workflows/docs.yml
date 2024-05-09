@@ -2,11 +2,10 @@ name: Documentation website
 run-name: Generate Library Documentation  📜
 
 # build the documentation only for tags.
-on: [ push ]
-#on:
-#  push:
-#    tags:
-#      - "*"
+on:
+  push:
+    tags:
+      - "*"
 
 # security: restrict permissions for CI jobs.
 permissions:
