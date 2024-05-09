@@ -25,7 +25,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install -e ".[docs]"
+        run: pip install -e ".[dev]"
 
       - name: Generate documentation
         run: pdoc src/databricks_bundle_validator -o docs/
