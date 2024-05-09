@@ -39,7 +39,7 @@ cli = [
     "click",
     "rich",
 ]
-doc = [
+docs = [
     "pdoc",
 ]
 lint = [

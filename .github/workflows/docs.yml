@@ -25,10 +25,10 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install -e ".[doc]"
+        run: pip install -e ".[docs]"
 
       - name: Generate documentation
-        run: pdoc -o docs/
+        run: pdoc src/databricks_bundle_validator -o docs/
 
       - name: Upload documentation
         uses: actions/upload-pages-artifact@v3
